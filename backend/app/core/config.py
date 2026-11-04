@@ -8,8 +8,8 @@ class Settings(BaseSettings):
     ENVIRONMENT: str = "development"
     FRONTEND_URL: str = "http://localhost:5173"
 
-    # Database
-    DATABASE_URL: str = "mysql+pymysql://root:password@localhost:3306/homeserve_db"
+    # Database (Defaults to SQLite file if no external DB is set)
+    DATABASE_URL: str = "sqlite:///./homeserve_prod.db"
 
     # JWT
     SECRET_KEY: str = "change-this-secret-key-in-production"
