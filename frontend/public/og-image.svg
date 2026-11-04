@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#991b1b" />
+      <stop offset="45%" stop-color="#dc2626" />
+      <stop offset="100%" stop-color="#881337" />
+    </linearGradient>
+
+    <!-- Card Glass Gradient -->
+    <linearGradient id="glass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05" />
+    </linearGradient>
+
+    <!-- Badge Gradient -->
+    <linearGradient id="badge-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#fde047" />
+    </linearGradient>
+  </defs>
+
+  <!-- Deep Vibrant Red Canvas -->
+  <rect width="1200" height="630" fill="url(#bg-grad)" />
+
+  <!-- Ambient Glow Circles -->
+  <circle cx="150" cy="120" r="280" fill="#ffffff" opacity="0.06" />
+  <circle cx="1050" cy="500" r="320" fill="#f43f5e" opacity="0.18" />
+  <circle cx="950" cy="150" r="220" fill="#fb7185" opacity="0.12" />
+
+  <!-- Top Pill Tag -->
+  <g transform="translate(100, 80)">
+    <rect width="400" height="42" rx="21" fill="#ffffff" opacity="0.18" />
+    <circle cx="24" cy="21" r="7" fill="#fef08a" />
+    <text x="42" y="27" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" letter-spacing="1">INDIA'S TRUSTED HOME SERVICES</text>
+  </g>
+
+  <!-- Brand Logo & Name -->
+  <g transform="translate(100, 160)">
+    <!-- Logo Icon Box -->
+    <rect width="64" height="64" rx="16" fill="#ffffff" />
+    <!-- Roof / Home Icon inside logo -->
+    <path d="M32 16 L18 28 L22 28 L22 46 C22 47.5 23.5 48.5 25 48.5 L39 48.5 C40.5 48.5 42 47.5 42 46 L42 28 L46 28 Z" fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Tool/Wrench symbol -->
+    <path d="M35 30 L31 34 L28 31 L32 27 Z" fill="#dc2626" />
+    <text x="82" y="47" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900" letter-spacing="-0.5">HomeServe</text>
+  </g>
+
+  <!-- Main Headline -->
+  <text x="100" y="300" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="56" font-weight="900" letter-spacing="-1">Verified Home Services</text>
+  <text x="100" y="365" fill="#fecdd3" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="56" font-weight="900" letter-spacing="-1">Booked in Seconds.</text>
+
+  <!-- Subheadline -->
+  <text x="100" y="425" fill="#ffffff" opacity="0.9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="500">
+    Electricians • Plumbers • AC Technicians • Deep Cleaning • Appliance Repair
+  </text>
+
+  <!-- Feature Trust Badges -->
+  <g transform="translate(100, 485)">
+    <!-- Badge 1 -->
+    <rect x="0" y="0" width="220" height="52" rx="12" fill="url(#glass)" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.5" />
+    <text x="20" y="32" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700">★ 4.8 Rating (45k+)</text>
+
+    <!-- Badge 2 -->
+    <rect x="236" y="0" width="230" height="52" rx="12" fill="url(#glass)" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.5" />
+    <text x="256" y="32" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700">⚡ 45-Min Doorstep</text>
+
+    <!-- Badge 3 -->
+    <rect x="482" y="0" width="220" height="52" rx="12" fill="url(#glass)" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.5" />
+    <text x="502" y="32" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700">🛡️ 30-Day Guarantee</text>
+  </g>
+
+  <!-- Right Visual Preview Card -->
+  <g transform="translate(760, 130)">
+    <!-- Glass Phone / Service Card -->
+    <rect width="360" height="420" rx="28" fill="#ffffff" opacity="0.96" filter="drop-shadow(0 20px 35px rgba(0,0,0,0.35))" />
+
+    <!-- Card Header -->
+    <rect x="24" y="24" width="312" height="60" rx="14" fill="#fff1f2" />
+    <circle cx="56" cy="54" r="18" fill="#e11d48" />
+    <!-- Lightning bolt inside circle -->
+    <path d="M57 44 L51 54 L56 54 L55 64 L62 52 L57 52 Z" fill="#ffffff" />
+    <text x="86" y="48" fill="#111827" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800">Split AC Deep Service</text>
+    <text x="86" y="66" fill="#6b7280" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500">Sharma Tech • ⭐ 4.9</text>
+
+    <!-- Service Row 2 -->
+    <rect x="24" y="100" width="312" height="60" rx="14" fill="#f9fafb" />
+    <circle cx="56" cy="130" r="18" fill="#dc2626" />
+    <!-- Sparkles -->
+    <text x="50" y="136" fill="#ffffff" font-size="16">✨</text>
+    <text x="86" y="124" fill="#111827" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800">Full Home Deep Clean</text>
+    <text x="86" y="142" fill="#6b7280" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500">PureCare Experts • ⭐ 4.8</text>
+
+    <!-- Service Row 3 -->
+    <rect x="24" y="176" width="312" height="60" rx="14" fill="#f9fafb" />
+    <circle cx="56" cy="206" r="18" fill="#b91c1c" />
+    <!-- Droplet -->
+    <text x="50" y="212" fill="#ffffff" font-size="16">💧</text>
+    <text x="86" y="200" fill="#111827" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800">Complete Wiring Check</text>
+    <text x="86" y="218" fill="#6b7280" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500">Certified Electrician</text>
+
+    <!-- Instant Booking Action Button -->
+    <rect x="24" y="260" width="312" height="54" rx="14" fill="#dc2626" />
+    <text x="96" y="293" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800">Book Now • Pay Online</text>
+
+    <!-- Verified Badge Footnote -->
+    <text x="95" y="360" fill="#059669" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">✓ 100% Background Verified Pros</text>
+    <text x="82" y="385" fill="#6b7280" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500">Rajkot • Mumbai • Pune • Delhi</text>
+  </g>
+
+  <!-- URL Watermark Bottom Right -->
+  <text x="1100" y="600" text-anchor="end" fill="#ffffff" opacity="0.6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="600">vibe-coding-com-sanket.vercel.app</text>
+</svg>
