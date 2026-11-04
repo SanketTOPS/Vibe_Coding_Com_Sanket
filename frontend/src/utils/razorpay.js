@@ -40,10 +40,10 @@ export const openRazorpayCheckout = async ({
     prefill: {
       name: user?.full_name || '',
       email: user?.email || '',
-      contact: user?.phone || '',
+      contact: (user?.phone || '9999999999').replace(/[^0-9]/g, '').slice(-10),
     },
     theme: {
-      color: '#0284c7', // primary-600
+      color: '#e11d48', // red-rose theme
     },
     handler: function (response) {
       if (onSuccess) {
@@ -58,6 +58,8 @@ export const openRazorpayCheckout = async ({
       ondismiss: function () {
         if (onError) onError('Payment cancelled by user');
       },
+      escape: true,
+      backdropclose: false
     },
   };
 

@@ -74,26 +74,9 @@ export default function CustomerDashboard() {
           }
         },
         onError: async (errMsg) => {
-          // If in test mode with demo keys, simulate test completion option
-          if (errMsg.includes('cancelled') || errMsg.includes('Payment failed')) {
-            toast.error(errMsg);
-            setPayingBookingId(null);
-            return;
-          }
-          // Fallback test mode verification
-          try {
-            await paymentsAPI.verify({
-              razorpay_order_id: order_id,
-              razorpay_payment_id: `pay_test_${Date.now()}`,
-              razorpay_signature: `test_verified_${Date.now()}`,
-            });
-            toast.success('Test payment verified successfully!');
-            fetchBookings();
-          } catch {
-            toast.error(errMsg);
-          } finally {
-            setPayingBookingId(null);
-          }
+          console.warn('Payment failed/dismissed:', errMsg);
+          toast.error(typeof errMsg === 'string' ? errMsg : 'Payment could not be completed.');
+          setPayingBookingId(null);
         },
       });
     } catch (err) {

@@ -24,21 +24,23 @@ def create_payment_order(data: PaymentOrderCreate, db: Session = Depends(get_db)
         raise HTTPException(status_code=400, detail="Booking already paid")
     
     amount_paise = int(float(booking.amount) * 100)
-    order_id = None
     
-    # Attempt real Razorpay order creation if keys are provided
-    if settings.RAZORPAY_KEY_ID and settings.RAZORPAY_KEY_SECRET and not settings.RAZORPAY_KEY_ID.endswith("_demo"):
-        try:
-            import razorpay
-            client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
-            rzp_order = client.order.create(data={"amount": amount_paise, "currency": "INR", "receipt": booking.booking_number})
-            order_id = rzp_order["id"]
-        except Exception as e:
-            if settings.ENVIRONMENT != "development":
-                raise HTTPException(status_code=502, detail=f"Payment gateway communication failed: {str(e)}")
-
-    if not order_id:
-        order_id = f"order_test_{booking.id}_{uuid.uuid4().hex[:8]}"
+    # Generate authentic Razorpay order via Razorpay API
+    if not settings.RAZORPAY_KEY_ID or not settings.RAZORPAY_KEY_SECRET:
+        raise HTTPException(status_code=500, detail="Razorpay credentials not configured in backend.")
+        
+    try:
+        import razorpay
+        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+        receipt_no = f"rcpt_{booking.id}_{uuid.uuid4().hex[:6]}"
+        rzp_order = client.order.create(data={
+            "amount": amount_paise,
+            "currency": "INR",
+            "receipt": receipt_no
+        })
+        order_id = rzp_order["id"]
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Razorpay Order Creation Failed: {str(e)}")
 
     payment = db.query(Payment).filter(Payment.booking_id == booking.id).first()
     if not payment:
@@ -53,7 +55,7 @@ def create_payment_order(data: PaymentOrderCreate, db: Session = Depends(get_db)
         "order_id": order_id,
         "amount": amount_paise,
         "currency": "INR",
-        "key": settings.RAZORPAY_KEY_ID or "rzp_test_homeserve_demo",
+        "key": settings.RAZORPAY_KEY_ID,
         "booking_number": booking.booking_number
     }
 
