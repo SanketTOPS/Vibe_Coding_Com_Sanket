@@ -39,6 +39,22 @@ app.include_router(providers.router, prefix="/api/v1")
 app.include_router(admin.router, prefix="/api/v1")
 app.include_router(uploads.router, prefix="/api/v1")
 
+
+@app.on_event("startup")
+def startup_event():
+    """Ensure database tables exist and auto-seed initial data on deployment startup."""
+    try:
+        from app.core.database import engine, Base
+        import app.models  # ensure models are registered
+        Base.metadata.create_all(bind=engine)
+        
+        # Auto seed if empty
+        import seed
+        seed.seed()
+    except Exception as e:
+        print(f"Startup warning during table creation/seeding: {e}")
+
+
 # Static files for local uploads
 static_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
 os.makedirs(static_dir, exist_ok=True)
