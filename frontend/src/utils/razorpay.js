@@ -73,3 +73,4 @@ export const openRazorpayCheckout = async ({
     if (onError) onError(err.message || 'Error opening payment checkout');
   }
 };
+

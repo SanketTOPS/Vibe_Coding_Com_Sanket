@@ -61,3 +61,4 @@ def upload_media(file: UploadFile, folder: str = "homeserve") -> dict:
             }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"File upload failed: {str(e)}")
+

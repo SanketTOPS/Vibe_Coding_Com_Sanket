@@ -60,3 +60,4 @@ def get_my_documents(
 ):
     docs = db.query(Document).filter(Document.user_id == current_user.id).all()
     return docs
+
