@@ -3,11 +3,15 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-# Ensure utf-8 output on Windows
+# Ensure utf-8 output on Windows safely without breaking test runners
 if sys.platform == "win32":
-    import io
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
+    try:
+        if hasattr(sys.stdout, "reconfigure"):
+            sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        if hasattr(sys.stderr, "reconfigure"):
+            sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
 
 from datetime import datetime, timedelta
 from app.core.database import SessionLocal, engine, Base
@@ -18,7 +22,11 @@ from app.models import (
     User, UserRole,
     ServiceCategory, Service, ProviderProfile, 
     TechnicianProfile, Booking, BookingStatus,
-    Payment, PaymentStatus, Review, Document
+    Payment, PaymentStatus, Review, Document,
+    Coupon, DiscountType, BookingItem, Notification, NotificationType,
+    AuditLog, Address, ServiceArea, TechnicianSchedule,
+    ProviderPayout, PayoutStatus, SupportTicket, TicketStatus, TicketPriority,
+    TicketMessage, FAQ, MembershipPlan
 )
 from app.core.security import get_password_hash
 
@@ -358,6 +366,149 @@ def seed():
         )
         db.add(b3)
         
+        # 10. Booking Items (Line items / Addons)
+        item1 = BookingItem(
+            booking_id=b1.id,
+            item_name="Standard AC Gas Refill & Filter Wash",
+            quantity=1,
+            unit_price=b1.amount,
+            total_price=b1.amount
+        )
+        db.add(item1)
+        
+        # 11. Coupons / Promotions
+        c1 = Coupon(
+            code="WELCOME50",
+            description="50% off on first home service booking",
+            discount_type=DiscountType.percentage,
+            discount_value=50.00,
+            min_order_amount=499.00,
+            max_discount_amount=250.00,
+            usage_limit=500,
+            is_active=True
+        )
+        c2 = Coupon(
+            code="FESTIVE100",
+            description="Flat Rs 100 off on cleaning & deep wash",
+            discount_type=DiscountType.flat,
+            discount_value=100.00,
+            min_order_amount=799.00,
+            usage_limit=1000,
+            is_active=True
+        )
+        db.add_all([c1, c2])
+
+        # 12. Service Areas / Operational Cities
+        sa1 = ServiceArea(city="Rajkot", state="Gujarat", pincode="360005", area_name="University Road & Kalawad Road")
+        sa2 = ServiceArea(city="Rajkot", state="Gujarat", pincode="360001", area_name="Dharmendra Road & Jubilee")
+        sa3 = ServiceArea(city="Ahmedabad", state="Gujarat", pincode="380015", area_name="Satellite & SG Highway")
+        sa4 = ServiceArea(city="Mumbai", state="Maharashtra", pincode="400001", area_name="Fort & South Mumbai")
+        sa5 = ServiceArea(city="Bangalore", state="Karnataka", pincode="560001", area_name="MG Road & Indiranagar")
+        db.add_all([sa1, sa2, sa3, sa4, sa5])
+
+        # 13. Customer Saved Addresses
+        addr1 = Address(
+            user_id=customer1.id,
+            title="Home",
+            street_address="101 Aditya Complex, University Road, Above SBI Bank",
+            city="Rajkot",
+            state="Gujarat",
+            pincode="360005",
+            is_default=True
+        )
+        addr2 = Address(
+            user_id=customer2.id,
+            title="Office",
+            street_address="B-404 Corporate Park, Ring Road",
+            city="Rajkot",
+            state="Gujarat",
+            pincode="360005",
+            is_default=True
+        )
+        db.add_all([addr1, addr2])
+
+        # 14. Membership Plans
+        m1 = MembershipPlan(
+            name="HomeServe VIP Club",
+            slug="homeserve-vip-club",
+            description="Exclusive home maintenance package with 2 free checkups & 15% discount",
+            price=999.00,
+            duration_months=12,
+            discount_percentage=15.00,
+            free_service_visits=2,
+            priority_support=True
+        )
+        m2 = MembershipPlan(
+            name="HomeServe Pro Plus",
+            slug="homeserve-pro-plus",
+            description="Complete peace of mind for luxury apartments with unlimited priority bookings",
+            price=1999.00,
+            duration_months=12,
+            discount_percentage=20.00,
+            free_service_visits=4,
+            priority_support=True
+        )
+        db.add_all([m1, m2])
+
+        # 15. FAQs
+        faq1 = FAQ(
+            category="Bookings",
+            question="How do I book a service on HomeServe?",
+            answer="Browse our verified categories, pick your service, choose your preferred date & time slot, and confirm securely.",
+            display_order=1
+        )
+        faq2 = FAQ(
+            category="Payments",
+            question="What payment methods are supported?",
+            answer="We support all major payment methods including UPI (Google Pay, PhonePe, Paytm), Credit/Debit cards, and Net Banking powered by Razorpay.",
+            display_order=2
+        )
+        faq3 = FAQ(
+            category="Safety",
+            question="Are service technicians background checked?",
+            answer="Yes, 100% of technicians and service providers undergo rigorous police verification, KYC check, and trade skill certifications.",
+            display_order=3
+        )
+        db.add_all([faq1, faq2, faq3])
+
+        # 16. Technician Schedules
+        for day in range(6):  # Monday to Saturday
+            sched = TechnicianSchedule(
+                technician_id=t1_profile.id,
+                day_of_week=day,
+                start_time="09:00",
+                end_time="19:00",
+                is_available=True
+            )
+            db.add(sched)
+
+        # 17. Notifications
+        n1 = Notification(
+            user_id=customer1.id,
+            title="Booking Completed",
+            message=f"Your booking {b1.booking_number} for AC Master Service was completed successfully.",
+            notification_type=NotificationType.booking_update,
+            is_read=True
+        )
+        n2 = Notification(
+            user_id=customer1.id,
+            title="Service In Progress",
+            message=f"Technician Vikram Singh has started service on booking {b2.booking_number}.",
+            notification_type=NotificationType.booking_update,
+            is_read=False
+        )
+        db.add_all([n1, n2])
+
+        # 18. Audit Log
+        log1 = AuditLog(
+            user_id=admin.id,
+            action="SYSTEM_INITIALIZED",
+            resource_type="System",
+            resource_id="1",
+            details="System initial seeding completed with 21 enterprise relational tables."
+        )
+        db.add(log1)
+
         db.commit()
         print("✅ HomeServe database seeded successfully!")
         print("\n=======================================================")
