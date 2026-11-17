@@ -13,15 +13,21 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# CORS
+# Secure CORS configuration (Never pair wildcard '*' with allow_credentials=True)
+cors_origins = [
+    settings.FRONTEND_URL.rstrip("/"),
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:5173",
+    "https://vibe-coding-com-sanket.vercel.app",
+]
+extra_origins = os.getenv("ALLOWED_ORIGINS", "")
+if extra_origins:
+    cors_origins.extend([o.strip().rstrip("/") for o in extra_origins.split(",") if o.strip()])
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        settings.FRONTEND_URL,
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "*"
-    ],
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

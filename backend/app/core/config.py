@@ -1,3 +1,4 @@
+import os
 from pydantic_settings import BaseSettings
 from typing import Optional
 
@@ -5,26 +6,26 @@ from typing import Optional
 class Settings(BaseSettings):
     # App
     APP_NAME: str = "HomeServe"
-    ENVIRONMENT: str = "development"
-    FRONTEND_URL: str = "http://localhost:5173"
+    ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
+    FRONTEND_URL: str = os.getenv("FRONTEND_URL", "https://vibe-coding-com-sanket.vercel.app")
 
-    # Database (Defaults to SQLite file if no external DB is set)
-    DATABASE_URL: str = "sqlite:///./homeserve_prod.db"
+    # Database: Supports Cloud MySQL (mysql+pymysql://...) or SQLite fallback
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./homeserve_prod.db")
 
-    # JWT
-    SECRET_KEY: str = "change-this-secret-key-in-production"
+    # JWT Security: Secret key securely read from environment variable
+    SECRET_KEY: str = os.getenv("SECRET_KEY", "homeserve-super-secret-jwt-key-2026-production-ready-security")
     ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
 
     # Cloudinary
-    CLOUDINARY_CLOUD_NAME: Optional[str] = None
-    CLOUDINARY_API_KEY: Optional[str] = None
-    CLOUDINARY_API_SECRET: Optional[str] = None
+    CLOUDINARY_CLOUD_NAME: Optional[str] = os.getenv("CLOUDINARY_CLOUD_NAME")
+    CLOUDINARY_API_KEY: Optional[str] = os.getenv("CLOUDINARY_API_KEY")
+    CLOUDINARY_API_SECRET: Optional[str] = os.getenv("CLOUDINARY_API_SECRET")
 
     # Razorpay
-    RAZORPAY_KEY_ID: Optional[str] = None
-    RAZORPAY_KEY_SECRET: Optional[str] = None
+    RAZORPAY_KEY_ID: Optional[str] = os.getenv("RAZORPAY_KEY_ID")
+    RAZORPAY_KEY_SECRET: Optional[str] = os.getenv("RAZORPAY_KEY_SECRET")
 
     class Config:
         env_file = ".env"

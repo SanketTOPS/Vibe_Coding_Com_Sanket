@@ -67,18 +67,19 @@ def verify_payment(data: PaymentVerify, db: Session = Depends(get_db), current_u
         raise HTTPException(status_code=404, detail="Payment record not found")
 
     is_valid = False
-    # Allow signature verification via HMAC
-    if settings.RAZORPAY_KEY_SECRET and not data.razorpay_signature.startswith("test_verified_"):
+    # Cryptographic signature verification via HMAC-SHA256
+    if settings.RAZORPAY_KEY_SECRET:
         msg = f"{data.razorpay_order_id}|{data.razorpay_payment_id}"
         generated_sig = hmac.new(settings.RAZORPAY_KEY_SECRET.encode(), msg.encode(), hashlib.sha256).hexdigest()
-        is_valid = (generated_sig == data.razorpay_signature)
-    elif data.razorpay_signature.startswith("test_verified_") or settings.ENVIRONMENT == "development":
+        is_valid = hmac.compare_digest(generated_sig, data.razorpay_signature)
+    elif settings.ENVIRONMENT == "testing" and data.razorpay_signature.startswith("test_verified_"):
+        # Strictly restricted to automated pytest test suites
         is_valid = True
 
     if not is_valid:
         payment.status = PaymentStatus.failed
         db.commit()
-        raise HTTPException(status_code=400, detail="Payment verification failed — invalid signature")
+        raise HTTPException(status_code=400, detail="Payment verification failed — invalid cryptographic signature")
 
     payment.razorpay_payment_id = data.razorpay_payment_id
     payment.razorpay_signature = data.razorpay_signature
