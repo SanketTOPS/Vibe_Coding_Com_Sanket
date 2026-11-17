@@ -1,0 +1,55 @@
+# HomeServe — On-Demand Home Services Booking SaaS Platform
+
+> HomeServe is a full-stack on-demand home maintenance SaaS platform designed to connect homeowners with verified local service professionals across India. The ecosystem features four role-based portals (Customer, Service Provider, Technician, and Super Admin) with integrated Razorpay digital payments, 21 relational database entities, and real-time status dispatch tracking.
+
+---
+
+## 1. Core Platform Capabilities
+- **On-Demand Dispatch**: Book electricians, plumbers, AC technicians, house cleaners, and carpenters delivered within 45 to 60 minutes.
+- **Transparent Pricing**: Fixed upfront pricing with zero hidden surcharges and 30-day post-service warranty.
+- **Verified Professionals**: 100% background-checked, KYC-verified technicians with trade skill certifications.
+- **Secure Online Checkout**: Razorpay test-mode integration supporting UPI (Google Pay, PhonePe, Paytm), Debit/Credit cards, and Net Banking with cryptographic HMAC-SHA256 signature verification.
+- **4 Role-Based Dashboards**:
+  - Customer: Browse catalog, schedule visits, track orders, pay online, write reviews.
+  - Service Provider: Manage catalog, assign technicians, review earnings.
+  - Technician: View daily field itinerary, navigate to premises, update job status (`Assigned` -> `In Progress` -> `Completed`).
+  - Super Admin: Platform GMV metrics, user management, provider KYC verification, security audit logs.
+
+---
+
+## 2. Public URLs & Navigation
+- **Homepage**: https://homeserve-app-sanket.vercel.app/
+- **Services Catalog**: https://homeserve-app-sanket.vercel.app/services
+- **Sign In**: https://homeserve-app-sanket.vercel.app/login
+- **Create Account**: https://homeserve-app-sanket.vercel.app/register
+- **XML Sitemap**: https://homeserve-app-sanket.vercel.app/sitemap.xml
+- **Robots Rules**: https://homeserve-app-sanket.vercel.app/robots.txt
+
+---
+
+## 3. Technology Stack & Architecture
+- **Frontend**: React 18, Vite, Tailwind CSS, Lucide React, Axios, React Router v6.
+- **Backend API**: Python 3.11, FastAPI v1, Uvicorn, Starlette, Pydantic v2.
+- **ORM & Database**: SQLAlchemy 2.0, Alembic Migrations, 21 Relational Tables (SQLite / Cloud MySQL).
+- **Interactive API Documentation**: https://vibe-coding-com-sanket-mdmm.onrender.com/docs
+- **Code Repository**: https://github.com/SanketTOPS/Vibe_Coding_Com_Sanket
+
+---
+
+## 4. Primary API Endpoints
+- `GET /api/v1/categories/`: List active home service categories.
+- `GET /api/v1/services/`: Search and filter catalog services with price units and provider details.
+- `GET /api/v1/services/{id}`: Detailed service specifications, reviews, and provider ratings.
+- `POST /api/v1/auth/register`: New user registration with password encryption.
+- `POST /api/v1/auth/login`: Issue JWT HS256 access and refresh tokens.
+- `POST /api/v1/bookings/`: Create service appointment.
+- `POST /api/v1/payments/create-order`: Generate authentic Razorpay order ID.
+- `POST /api/v1/payments/verify`: Cryptographically verify payment signatures via HMAC-SHA256.
+
+---
+
+## 5. Contact & Headquarters
+- **Company**: HomeServe Technologies India
+- **Headquarters**: 101 Aditya Complex, University Road, Above SBI Bank, Rajkot - 360005, Gujarat, India
+- **Phone / WhatsApp**: +91 97247 99469
+- **Email**: support@homeserve.com

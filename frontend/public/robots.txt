@@ -1,0 +1,80 @@
+# ========================================================
+# HomeServe Platform - Robots.txt File
+# Website: https://homeserve-app-sanket.vercel.app/
+# Last Updated: 2026-11-17
+# ========================================================
+
+# Global rules for all standard crawlers
+User-agent: *
+Allow: /
+Allow: /services
+Allow: /services/*
+Allow: /login
+Allow: /register
+Allow: /favicon.svg
+Allow: /og-image.png
+Allow: /manifest.json
+Allow: /llms.txt
+
+# Disallow private, authenticated, or sensitive dashboards
+Disallow: /customer/
+Disallow: /customer/*
+Disallow: /provider/
+Disallow: /provider/*
+Disallow: /technician/
+Disallow: /technician/*
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /unauthorized
+Disallow: /api/
+
+# Specialized rules for Googlebot
+User-agent: Googlebot
+Allow: /
+Allow: /services
+Allow: /services/*
+Disallow: /customer/
+Disallow: /provider/
+Disallow: /technician/
+Disallow: /admin/
+
+# Specialized rules for Bingbot
+User-agent: Bingbot
+Allow: /
+Allow: /services
+Allow: /services/*
+Disallow: /customer/
+Disallow: /provider/
+Disallow: /technician/
+Disallow: /admin/
+
+# AI Crawlers & LLM Agents (Allowed to index public knowledge & llms.txt)
+User-agent: GPTBot
+Allow: /
+Allow: /services
+Allow: /llms.txt
+Disallow: /customer/
+Disallow: /provider/
+Disallow: /technician/
+Disallow: /admin/
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /services
+Allow: /llms.txt
+Disallow: /customer/
+Disallow: /provider/
+Disallow: /technician/
+Disallow: /admin/
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /services
+Allow: /llms.txt
+Disallow: /customer/
+Disallow: /provider/
+Disallow: /technician/
+Disallow: /admin/
+
+# Official XML Sitemap Location
+Sitemap: https://homeserve-app-sanket.vercel.app/sitemap.xml

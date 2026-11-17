@@ -2,17 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#dc2626" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
 
     <!-- Standard Primary SEO Meta Tags -->
-    <title>HomeServe — On-Demand Home Services Booking SaaS Platform</title>
-    <meta name="title" content="HomeServe — On-Demand Home Services Booking SaaS Platform" />
-    <meta name="description" content="Book background-checked electricians, plumbers, AC technicians, deep cleaners, painters, and appliance repair professionals in 45 minutes with upfront rates and Razorpay secured checkout." />
-    <meta name="keywords" content="home services, electrician, plumber, AC repair, home cleaning, appliance repair, carpenter, painter, pest control, Rajkot, Mumbai, India" />
-    <meta name="author" content="HomeServe India" />
-    <meta name="robots" content="index, follow" />
+    <title>HomeServe — On-Demand Home Services Booking SaaS Platform | Rajkot, Mumbai, India</title>
+    <meta name="title" content="HomeServe — On-Demand Home Services Booking SaaS Platform | Rajkot, Mumbai, India" />
+    <meta name="description" content="Book background-checked electricians, plumbers, AC repair mechanics, deep home cleaners, painters, and appliance technicians in 45 minutes. Upfront pricing, 30-day warranty, Razorpay secured checkout." />
+    <meta name="keywords" content="home services, electrician near me, plumber near me, AC service Rajkot, home deep cleaning, appliance repair, carpenter, painter, pest control, HomeServe India, on-demand home maintenance" />
+    <meta name="author" content="HomeServe Technologies India" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large" />
+
+    <!-- Canonical & Alternate Links -->
+    <link rel="canonical" href="https://homeserve-app-sanket.vercel.app/" />
+    <link rel="alternate" hreflang="en-IN" href="https://homeserve-app-sanket.vercel.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://homeserve-app-sanket.vercel.app/" />
+
+    <!-- Geo Meta Tags (Local SEO for India & Gujarat) -->
+    <meta name="geo.region" content="IN-GJ" />
+    <meta name="geo.placename" content="Rajkot, Gujarat, India" />
+    <meta name="geo.position" content="22.3039;70.8022" />
+    <meta name="ICBM" content="22.3039, 70.8022" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="distribution" content="Global" />
+    <meta name="rating" content="General" />
 
     <!-- Open Graph (OG) Meta Tags / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website" />
@@ -25,19 +42,226 @@
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="HomeServe On-Demand Home Services Platform" />
+    <meta property="og:image:alt" content="HomeServe On-Demand Home Services Platform Logo and Dashboard" />
     <meta property="og:locale" content="en_IN" />
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://homeserve-app-sanket.vercel.app/" />
     <meta name="twitter:title" content="HomeServe — On-Demand Home Services Booking Platform" />
-    <meta name="twitter:description" content="Book verified electricians, plumbers, AC mechanics, deep cleaners with 30-day service warranty." />
+    <meta name="twitter:description" content="Book verified electricians, plumbers, AC mechanics, deep cleaners with 30-day service warranty & Razorpay secure payments." />
     <meta name="twitter:image" content="https://homeserve-app-sanket.vercel.app/og-image.png" />
-    <meta name="twitter:image:alt" content="HomeServe Home Services" />
+    <meta name="twitter:image:alt" content="HomeServe Home Services App Preview" />
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://homeserve-app-sanket.vercel.app/" />
+    <!-- Mobile App & PWA Capabilities -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="HomeServe" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- ========================================== -->
+    <!-- SCHEMA.ORG STRUCTURED DATA (JSON-LD)       -->
+    <!-- ========================================== -->
+
+    <!-- 1. Organization & Corporate Identity Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://homeserve-app-sanket.vercel.app/#organization",
+      "name": "HomeServe India",
+      "legalName": "HomeServe On-Demand Technologies",
+      "url": "https://homeserve-app-sanket.vercel.app/",
+      "logo": "https://homeserve-app-sanket.vercel.app/og-image.png",
+      "description": "On-demand home services booking SaaS platform connecting homeowners with background-checked certified technicians in India.",
+      "telephone": "+91-97247-99469",
+      "email": "support@homeserve.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "101 Aditya Complex, University Road, Above SBI Bank",
+        "addressLocality": "Rajkot",
+        "addressRegion": "Gujarat",
+        "postalCode": "360005",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-97247-99469",
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi", "Gujarati"]
+      }
+    }
+    </script>
+
+    <!-- 2. WebSite Schema with Sitelinks SearchBox -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://homeserve-app-sanket.vercel.app/#website",
+      "url": "https://homeserve-app-sanket.vercel.app/",
+      "name": "HomeServe",
+      "publisher": {
+        "@id": "https://homeserve-app-sanket.vercel.app/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://homeserve-app-sanket.vercel.app/services?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- 3. LocalBusiness & HomeAndConstructionBusiness Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "@id": "https://homeserve-app-sanket.vercel.app/#localbusiness",
+      "name": "HomeServe On-Demand Home Services",
+      "image": "https://homeserve-app-sanket.vercel.app/og-image.png",
+      "telephone": "+91-97247-99469",
+      "email": "support@homeserve.com",
+      "url": "https://homeserve-app-sanket.vercel.app/",
+      "priceRange": "₹199 - ₹4999",
+      "paymentAccepted": ["Cash", "Credit Card", "Debit Card", "UPI", "Net Banking"],
+      "currenciesAccepted": "INR",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "101 Aditya Complex, University Road, Above SBI Bank",
+        "addressLocality": "Rajkot",
+        "addressRegion": "Gujarat",
+        "postalCode": "360005",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 22.3039,
+        "longitude": 70.8022
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "08:00",
+          "closes": "21:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "1250",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+
+    <!-- 4. Service Offerings Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Home Maintenance & Repair Services",
+      "itemListElement": [
+        {
+          "@type": "Service",
+          "position": 1,
+          "name": "AC Master Servicing & Gas Refill",
+          "description": "Complete indoor and outdoor unit jet-pump pressure cleaning, gas leak detection, filter sterilization, and coolant top-up.",
+          "provider": { "@id": "https://homeserve-app-sanket.vercel.app/#localbusiness" },
+          "offers": {
+            "@type": "Offer",
+            "price": "499.00",
+            "priceCurrency": "INR"
+          }
+        },
+        {
+          "@type": "Service",
+          "position": 2,
+          "name": "Complete Electrical Inspection & MCB Wiring",
+          "description": "Certified electrician visit for short-circuit diagnosis, MCB breaker upgrades, load balancing, and switchboard repair.",
+          "provider": { "@id": "https://homeserve-app-sanket.vercel.app/#localbusiness" },
+          "offers": {
+            "@type": "Offer",
+            "price": "599.00",
+            "priceCurrency": "INR"
+          }
+        },
+        {
+          "@type": "Service",
+          "position": 3,
+          "name": "Deep Kitchen & Bathroom Degreasing",
+          "description": "Hospital-grade motorized scrubbing, tile grouting sterilization, chimney degreasing, and drainage descaling.",
+          "provider": { "@id": "https://homeserve-app-sanket.vercel.app/#localbusiness" },
+          "offers": {
+            "@type": "Offer",
+            "price": "799.00",
+            "priceCurrency": "INR"
+          }
+        },
+        {
+          "@type": "Service",
+          "position": 4,
+          "name": "Plumbing Leakage & Pipe Replacement",
+          "description": "Prompt faucet repair, concealed pipe leak detection, water tank cleaning, and sanitary ware installation.",
+          "provider": { "@id": "https://homeserve-app-sanket.vercel.app/#localbusiness" },
+          "offers": {
+            "@type": "Offer",
+            "price": "299.00",
+            "priceCurrency": "INR"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- 5. FAQPage Schema for Rich Snippets on Google Search -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How quickly can a HomeServe technician reach my home?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For express bookings, our background-verified service professionals arrive at your doorstep in 45 to 60 minutes across all covered service pincodes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the technicians verified and background checked?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, 100% of our service technicians undergo mandatory police verification, national identity (Aadhaar) checks, and trade skill certifications before onboarding."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What payment methods are accepted on HomeServe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We accept all major digital payment options powered by Razorpay including UPI (Google Pay, PhonePe, Paytm), Credit Cards, Debit Cards, Net Banking, as well as Cash on Service."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a service warranty provided?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, all repair and maintenance bookings come with a 30-day HomeServe Service Guarantee. If you face any issues within 30 days, we revisit free of charge."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
