@@ -7,13 +7,18 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 10000,
 });
 
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    try {
+      const token = localStorage.getItem('access_token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    } catch {
+      // Storage access blocked or restricted
     }
     return config;
   },
@@ -24,16 +29,18 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response?.status === 401 && !error.config?._retry) {
-      if (window.location.pathname !== '/login' && window.location.pathname !== '/register') {
+      try {
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         localStorage.removeItem('user');
-        window.location.href = '/login';
+      } catch {
+        // Safe fail
       }
+      // Note: ProtectedRoute handles redirect smoothly via React Router state
+      // Hard window.location.href is avoided to prevent crashing automated audits (Lighthouse / Web Crawlers)
     }
     return Promise.reject(error);
   }
 );
 
 export default api;
-
