@@ -1,40 +1,87 @@
-# HomeServe - On-Demand Home Services Booking SaaS Platform
+# 🏠 HomeServe — On-Demand Home Services Booking SaaS Platform
 
-A modern, production-ready full-stack SaaS platform connecting customers with verified professional home service providers (electricians, plumbers, AC technicians, house cleaners, painters, carpenters, appliance repair technicians, and pest control specialists).
+![Tests](https://img.shields.io/badge/Tests-25%20Passing-brightgreen?style=for-the-badge&logo=pytest)
+![FastAPI](https://img.shields.io/badge/Backend-FastAPI%20v1-009688?style=for-the-badge&logo=fastapi)
+![React](https://img.shields.io/badge/Frontend-React%2018%20%2B%20Vite-61DAFB?style=for-the-badge&logo=react)
+![Tailwind](https://img.shields.io/badge/Styling-Tailwind%20CSS-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Database](https://img.shields.io/badge/Database-21%20Tables%20(Alembic)-blue?style=for-the-badge&logo=sqlite)
+![Razorpay](https://img.shields.io/badge/Payments-Razorpay%20HMAC-0C2340?style=for-the-badge)
+
+A modern, production-grade full-stack SaaS platform connecting customers with verified professional home service providers (electricians, plumbers, AC technicians, house cleaners, painters, carpenters, appliance repair technicians, and pest control specialists).
+
+---
+
+## 🌐 Live Production Deployments
+
+- **🚀 Live Frontend (Vercel)**: [https://vibe-coding-com-sanket.vercel.app/](https://vibe-coding-com-sanket.vercel.app/)
+- **⚡ Live Backend API & Swagger UI (Render)**: [https://vibe-coding-com-sanket-mdmm.onrender.com/docs](https://vibe-coding-com-sanket-mdmm.onrender.com/docs)
+- **📦 GitHub Repository**: [https://github.com/SanketTOPS/Vibe_Coding_Com_Sanket](https://github.com/SanketTOPS/Vibe_Coding_Com_Sanket)
+
+---
+
+## 📚 Project Documentation & Architectural Assets
+
+Comprehensive documentation covering system design, database architecture, user personas, presentation slides, and prompt engineering logs:
+
+| Documentation File | Description & Contents |
+| :--- | :--- |
+| **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** | **Full System Architecture Diagram** (Mermaid), Client/Edge/Gateway/Service layers, and security topology. |
+| **[docs/ERD.md](docs/ERD.md)** | **Entity-Relationship Diagram** (Mermaid) covering all **21 relational tables**, foreign keys, and data dictionary. |
+| **[docs/USER_STORIES.md](docs/USER_STORIES.md)** | Comprehensive **User Stories & Acceptance Criteria** across all 4 personas (Customer, Provider, Technician, Admin). |
+| **[docs/PRESENTATION.md](docs/PRESENTATION.md)** | **Slide-by-Slide Presentation Deck** for evaluation, project pitch, and technical demo. |
+| **[VIBE_CODING_PROMPT_LOG.md](VIBE_CODING_PROMPT_LOG.md)** | **Complete Vibe Coding History**, prompt sequences, debugging iterations, and engineering decisions. |
 
 ---
 
 ## 🚀 Key Features & Capabilities
 
 - **4 Role-Based Portals**:
-  - **Super Admin**: System overview, platform revenue metrics, user management (activate/deactivate), service category configuration, and provider verification.
-  - **Customer**: Browse services by category or search query, view upfront transparent rates, schedule appointments, track real-time booking statuses, pay via Razorpay, and submit reviews & ratings.
-  - **Service Provider**: Manage business profile, list and price services, hire and assign technicians, review incoming customer bookings, and accept/reject requests.
+  - **Super Admin**: System overview, platform revenue metrics, user management (activate/deactivate), service category configuration, provider verification, and security audit logs.
+  - **Customer**: Browse services by category or search query, view upfront transparent rates, schedule appointments, track real-time booking statuses, pay securely via Razorpay, and submit verified reviews & ratings.
+  - **Service Provider**: Manage agency business profile, list and price services, hire and assign technicians, review incoming customer bookings, and accept/reject requests.
   - **Technician**: Dedicated job queue showing scheduled jobs, customer location, service notes, and one-click "Start Work" and "Complete Job" status lifecycle.
 - **Booking Lifecycle**: `Pending` ➔ `Confirmed` ➔ `In Progress` ➔ `Completed` / `Cancelled`.
-- **Payment Processing**: Integrated Razorpay (test mode) with order generation, checkout modal, and HMAC signature verification.
-- **Media & Document Uploads**: Cloudinary integration for verification certificates and service imagery with fallback dev storage.
-- **Security**: JWT Authentication (Access + Refresh tokens), bcrypt password hashing, input validation via Pydantic & React hooks, and strict Role-Based Access Control (RBAC).
+- **Payment Processing**: Integrated Razorpay (test mode) with authentic order generation, checkout modal, and bank-grade HMAC-SHA256 signature verification.
+- **Media & Document Uploads**: Cloudinary integration for KYC certificates and service imagery with fallback local storage.
+- **Hardened Security**:
+  - JWT Authentication (Access + Refresh tokens) strictly sourced from environment variables.
+  - Passlib Bcrypt with 72-byte buffer overflow protection.
+  - Explicit CORS whitelist (rejects insecure wildcard `*` credential pairing).
+  - Cryptographic HMAC-SHA256 signature validation on payment callbacks.
 
 ---
 
-## 🛠️ Technology Stack
+## 🗄️ Database Architecture (21 Relational Tables)
 
-| Layer | Technologies |
-| :--- | :--- |
-| **Frontend** | React 18, Vite, Tailwind CSS, React Router v6, Axios, Lucide React, Recharts, React Hot Toast |
-| **Backend** | Python 3.11, FastAPI, SQLAlchemy 2.0, Pydantic v2, PyMySQL, Python-JOSE, Passlib, Uvicorn |
-| **Database** | MySQL (Production on Cloud Provider) / SQLite (Local Dev Fallback) |
-| **Payments** | Razorpay Test Mode API & Checkout.js |
-| **Media** | Cloudinary API |
-| **Testing** | Pytest (Backend API & Integration Tests), Playwright ready |
-| **Deployment** | Vercel (Frontend SPA), Render (Backend FastAPI Web Service) |
+The database schema is fully managed with **SQLAlchemy 2.0** and version-controlled via **Alembic Migrations** (`backend/alembic/versions/`):
+
+1. `users` — Authentication & identity for all 4 roles
+2. `service_categories` — Taxonomy of home services
+3. `services` — Bookable catalog offerings with pricing
+4. `provider_profiles` — Commercial agency profile & reputation
+5. `technician_profiles` — Field technician skill sets & agency link
+6. `bookings` — Core transaction entity recording order lifecycle
+7. `payments` — Cryptographically signed Razorpay transactions
+8. `reviews` — Customer feedback and 5-star ratings
+9. `documents` — KYC & compliance records
+10. `coupons` — Promotional discount vouchers & caps
+11. `booking_items` — Line items, spare parts & add-ons
+12. `notifications` — In-app user notifications & alerts
+13. `audit_logs` — Immutable security & administrative audit trail
+14. `addresses` — Customer saved address book
+15. `service_areas` — Operational city coverage & serviceable pincodes
+16. `technician_schedules` — Weekly availability shifts
+17. `provider_payouts` — Net revenue settlement & agency earnings
+18. `support_tickets` — Customer helpdesk tickets
+19. `ticket_messages` — Threaded support conversation messages
+20. `faqs` — Knowledge base & self-serve help articles
+21. `membership_plans` — Recurring SaaS subscription packages (HomeServe VIP)
 
 ---
 
-## 🔐 Demonstration Credentials
+## 🔑 Demonstration Credentials
 
-The seed script creates the following pre-configured demonstration accounts:
+The seed script (`python seed.py`) auto-populates the following pre-configured demonstration accounts:
 
 | Role | Email | Password | Access / Purpose |
 | :--- | :--- | :--- | :--- |
@@ -45,12 +92,34 @@ The seed script creates the following pre-configured demonstration accounts:
 
 ---
 
+## 🧪 Automated Testing (25/25 Tests Passing)
+
+The project includes an exhaustive automated test suite covering authentication, security, RBAC, bookings, payments, and enterprise models:
+
+```bash
+cd backend
+python -m pytest -v
+```
+
+```text
+======================= 25 passed in 20.00s =======================
+backend/tests/test_auth.py: 4 tests
+backend/tests/test_auth_advanced.py: 5 tests
+backend/tests/test_bookings_and_reviews.py: 3 tests
+backend/tests/test_coupons_and_support.py: 6 tests
+backend/tests/test_enterprise_models.py: 1 test
+backend/tests/test_payments_and_security.py: 2 tests
+backend/tests/test_services_and_bookings.py: 4 tests
+```
+
+---
+
 ## 💻 Local Development Setup
 
 ### 1. Prerequisites
 - Python 3.11+
 - Node.js 18+ (Node 20 recommended)
-- MySQL Server (optional for dev; SQLite fallback is supported)
+- Cloud MySQL or SQLite (SQLite used by default for zero-configuration setup)
 
 ### 2. Backend Setup
 ```bash
@@ -64,14 +133,11 @@ source venv/bin/activate # Linux / macOS
 # Install dependencies
 pip install -r requirements.txt
 
-# Configure environment variables
-# Copy .env.example to .env and adjust variables as needed:
-cp .env.example .env
-
-# Populate database with initial schema and realistic seed data
+# Run migrations and seed data
+alembic upgrade head
 python seed.py
 
-# Start FastAPI development server
+# Start FastAPI server
 uvicorn app.main:app --reload --port 8000
 ```
 - Swagger API Docs: `http://localhost:8000/docs`
@@ -91,39 +157,9 @@ npm run dev
 
 ---
 
-## 🧪 Running Automated Tests
+## 🏢 Contact & Corporate Office
 
-Run the backend Pytest test suite:
-```bash
-cd backend
-pytest -v
-```
-
----
-
-## 🌐 Deployment Configuration
-
-### Frontend (Vercel)
-- Configured with `vercel.json` for SPA URL rewrites.
-- Set Root Directory: `frontend`
-- Build Command: `npm run build`
-- Output Directory: `dist`
-- Environment Variables:
-  - `VITE_API_URL=https://your-backend.onrender.com/api/v1`
-  - `VITE_RAZORPAY_KEY_ID=your_razorpay_key`
-
-### Backend (Render)
-- Configured via `render.yaml` and `Procfile`.
-- Build Command: `pip install -r requirements.txt`
-- Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-- Environment Variables:
-  - `DATABASE_URL=mysql+pymysql://<user>:<password>@<host>:3306/<database>`
-  - `SECRET_KEY=<your-production-secret-key>`
-  - `ENVIRONMENT=production`
-  - `FRONTEND_URL=https://your-frontend.vercel.app`
-  - `RAZORPAY_KEY_ID=<your-razorpay-key>`
-  - `RAZORPAY_KEY_SECRET=<your-razorpay-secret>`
-  - `CLOUDINARY_CLOUD_NAME=<your-cloud-name>`
-  - `CLOUDINARY_API_KEY=<your-api-key>`
-  - `CLOUDINARY_API_SECRET=<your-api-secret>`
-
+**HomeServe Platform Headquarters**  
+📍 101 Aditya Complex, University Road, Above SBI Bank, Rajkot - 360005, Gujarat, India  
+📞 Phone / WhatsApp: +91 97247 99469  
+🌐 Web: [https://vibe-coding-com-sanket.vercel.app/](https://vibe-coding-com-sanket.vercel.app/)
