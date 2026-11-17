@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     # App
     APP_NAME: str = "HomeServe"
     ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
-    FRONTEND_URL: str = os.getenv("FRONTEND_URL", "https://vibe-coding-com-sanket.vercel.app")
+    FRONTEND_URL: str = os.getenv("FRONTEND_URL", "https://homeserve-app-sanket.vercel.app")
 
     # Database: Supports Cloud MySQL (mysql+pymysql://...) or SQLite fallback
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./homeserve_prod.db")

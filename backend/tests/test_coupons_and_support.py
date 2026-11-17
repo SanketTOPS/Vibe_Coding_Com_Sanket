@@ -106,3 +106,4 @@ def test_service_categories_api(client):
     res = client.get("/api/v1/categories/")
     assert res.status_code == 200
     assert isinstance(res.json(), list)
+

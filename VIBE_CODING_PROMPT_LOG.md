@@ -140,3 +140,4 @@ Expand automated pytest test suite to 25 comprehensive test cases covering:
 2. **Strict CORS Compliance**: The W3C CORS specification strictly prohibits `Access-Control-Allow-Origin: *` when `Access-Control-Allow-Credentials: true`. Always supply an explicit list of origins.
 3. **Bcrypt 72-Byte Boundary**: Passlib with bcrypt >= 4.0 throws an unhandled exception if passwords exceed 72 bytes. Sanitizing input with `password[:72]` guarantees seamless compatibility.
 4. **Declarative Database Versioning**: Alembic ensures smooth migrations when adding tables, allowing zero disruption to existing production instances.
+

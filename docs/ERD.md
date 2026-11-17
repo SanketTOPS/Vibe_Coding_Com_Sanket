@@ -282,3 +282,4 @@ erDiagram
 | 19 | `ticket_messages` | Threaded conversation messages between customer and helpdesk | `ticket_id`, `sender_id` |
 | 20 | `faqs` | Frequently Asked Questions and self-serve knowledge base | Self-contained |
 | 21 | `membership_plans` | SaaS recurring subscription membership tiers (HomeServe VIP) | Self-contained |
+

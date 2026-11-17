@@ -9,7 +9,7 @@
 - **Tagline**: Connecting homeowners with verified technicians in minutes.
 - **Presenter**: Sanket (Vibe Coding Project)
 - **Live URLs**:
-  - Frontend: `https://vibe-coding-com-sanket.vercel.app/`
+  - Frontend: `https://homeserve-app-sanket.vercel.app/`
   - Backend API: `https://vibe-coding-com-sanket-mdmm.onrender.com/docs`
   - GitHub: `https://github.com/SanketTOPS/Vibe_Coding_Com_Sanket`
 
@@ -78,4 +78,5 @@
 ---
 
 **Thank You!**  
-*Contact: 101 Aditya Complex, University Road, Above SBI Bank, Rajkot - 360005 | +91 97247 99469*
+*Contact: 101 Aditya Complex, University Road, Above SBI Bank, Rajkot - 360005 | +91 97247 99469 | https://homeserve-app-sanket.vercel.app*
+

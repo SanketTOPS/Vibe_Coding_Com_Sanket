@@ -98,3 +98,4 @@
   - [x] Real-time KPI summary cards: Total Users, Total Bookings, GMV Revenue, Active Providers.
   - [x] Table listing all users with role-filter and account deactivation capability.
   - [x] Audit log monitoring for security and compliance.
+

@@ -110,3 +110,4 @@ flowchart TD
 | **Authorization (RBAC)** | 4-tier hierarchy: Super Admin > Provider > Technician > Customer |
 | **Payment Integrity** | HMAC-SHA256 signature verification comparing `order_id` + `payment_id` against merchant secret |
 | **Audit Trail** | Dedicated `audit_logs` table tracking sensitive system events, actor user ID, action, and IP address |
+

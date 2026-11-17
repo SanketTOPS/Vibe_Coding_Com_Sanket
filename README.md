@@ -13,7 +13,7 @@ A modern, production-grade full-stack SaaS platform connecting customers with ve
 
 ## 🌐 Live Production Deployments
 
-- **🚀 Live Frontend (Vercel)**: [https://vibe-coding-com-sanket.vercel.app/](https://vibe-coding-com-sanket.vercel.app/)
+- **🚀 Live Frontend (Vercel)**: [https://homeserve-app-sanket.vercel.app/](https://homeserve-app-sanket.vercel.app/)
 - **⚡ Live Backend API & Swagger UI (Render)**: [https://vibe-coding-com-sanket-mdmm.onrender.com/docs](https://vibe-coding-com-sanket-mdmm.onrender.com/docs)
 - **📦 GitHub Repository**: [https://github.com/SanketTOPS/Vibe_Coding_Com_Sanket](https://github.com/SanketTOPS/Vibe_Coding_Com_Sanket)
 
@@ -162,4 +162,4 @@ npm run dev
 **HomeServe Platform Headquarters**  
 📍 101 Aditya Complex, University Road, Above SBI Bank, Rajkot - 360005, Gujarat, India  
 📞 Phone / WhatsApp: +91 97247 99469  
-🌐 Web: [https://vibe-coding-com-sanket.vercel.app/](https://vibe-coding-com-sanket.vercel.app/)
+🌐 Web: [https://homeserve-app-sanket.vercel.app/](https://homeserve-app-sanket.vercel.app/)
